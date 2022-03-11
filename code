@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script >
+var r = [0,0,0,0,0,0,0,0,0]
+var i=0;
+function check()
+{
+    if(i<5)
+    {
+        return 0;
+    }
+    for(let i=0; i<3; i++)
+    {
+        if(r[i*3 + 0]==r[i*3 + 1] && r[i*3 + 1]==r[i*3 + 2])
+            return r[i*3];
+    }
+    for (let i=0;i<3;i++)
+    {
+        if(r[i]==r[i+3] && r[i]==r[i+6])
+            return r[i]
+    }
+    if (r[0]==r[4] && r[4]==r[8])
+        return r[0];
+    else if (r[2]==r[4] && r[4]==r[6])
+        return r[4]
+}
+function press(a)
+{
+   
+    if(r[a] == 1 || r[a] == 2)
+        return 0;
+    else
+    {
+        i++;
+        if(i%2==1)
+            r[a]=1;
+        else
+            r[a]=2;
+    }
+    var c=check();
+    if (c==1)
+    {
+        document.getElementById("p").style.opacity=1;
+        document.getElementById("x").style.opacity=1;
+        document.getElementById("t").style.opacity=0;
+
+    }
+    else if (c==2)
+    {
+        document.getElementById("p").style.opacity=1;
+        document.getElementById("t").style.opacity=0;
+        document.getElementById("o").style.opacity=1;
+
+    }
+}
+    
+</script>
+<style>
+#p{
+    opacity: 0;
+}
+#x{
+    opacity: 0;
+    height: 300px; width: 300px;
+
+}
+#o{
+    opacity: 0;
+    height: 300px; width: 300px;
+}
+table,th{border:2px solid black;}
+th{width:100px;
+height:100px;}
+table{ border-collapse: collapse;}
+body{
+display: flex;}
+button{
+    background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body> <table id="t">
+<tr> <th> <button id="1" onclick="press(0)"> _ </button> </th>
+<th> <button id="2"  onclick="press(1)"> _ </button></th>
+<th> <button id="3"  onclick="press(2)"> _ </button></th> </tr>
+<tr> <th> <button id="4"  onclick="press(3)"> _ </button> </th>
+<th> <button id="5"  onclick="press(4)"> _ </button></th>
+<th> <button id="6"  onclick="press(5)"> _ </button></th> </tr>
+<tr> <th> <button id="7"  onclick="press(6)"> _ </button> </th>
+<th> <button id="8"  onclick="press(7)"> _ </button></th>
+<th> <button id="9"  onclick="press(8)"> _ </button></th> </tr>
+</table>
+<p id="x">
+   <img src="greeting.jpg" alt="">
+</p>
+<p id="o">
+    O wins
+</p>
+<br>
+<p id="p">
+    Do you want to continue <button onclick="location.href='Tic Tac Toe.html'"> Yes...</button>
+
+</p>
+</body>
+</html>
